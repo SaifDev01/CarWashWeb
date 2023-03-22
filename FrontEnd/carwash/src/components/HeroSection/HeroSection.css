@@ -1,5 +1,21 @@
-.hero-container{
-    background: url('../../../public/Rectangle\ 2landing.png') center center/cover no-repeat;
+
+ 
+ .about{
+  /* background: url('../../../public/Rectangle 2.png'); */
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.2);
+  background-size: contain;
+  
+ }
+ .hero-container{
+    /* background: url('../../../public/home.png'); */
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 100vh;
     width: 100%;
     display: flex;
@@ -10,12 +26,13 @@
     object-fit: contain;
 }
 
-.hero-container > h3 {
 
+.hero-container > h3 {
     margin-bottom: 80px;
     font-size: 50px;
     color: #6CC51D;
 }
+
 .hero-container > h1 {
     color: #fff;
     font-size: 100px;
@@ -30,41 +47,75 @@
 }
 
 
-@media screen and (max-width : 960px){
-    .hero-container > h1{
-        font-size: 70px;
-        margin-top: -150px;
-        padding-left: 50px;
-    }
-    .hero-container > h3 {
-        margin-bottom: 130px;
-        font-size: 40px;
-        color: #6CC51D;
-        padding-left: 50px;
-    }
+@media screen and (max-width: 1200px) {
+  .hero-container > h1 {
+    font-size: 80px;
+    margin-top: -150px;
+    padding-left: 50px;
+  }
+  .hero-container > h3 {
+    margin-bottom: 130px;
+    font-size: 40px;
+    color: #6CC51D;
+    padding-left: 50px;
+  }
 }
-@media screen and (max-width :  768px) { 
-    .hero-container  > h1 {
-        font-size: 50px;
-        margin-top: -100px;
-        padding-right: 50px;
 
-        padding-left: 50px;
-    }
-    .hero-container > p {
-        padding-left: 50px;
-        padding-right: 50px;
-        font-size: 30px;
-    }
-    .hero-container > h3 {
-
-        margin-bottom: 100px;
-        font-size: 35px;
-        padding-right: 50px;
-
-        color: #6CC51D;
-        padding-left: 50px;
-    }
+@media screen and (max-width: 960px) {
+  .hero-container > h1 {
+    font-size: 70px;
+    margin-top: -150px;
+    padding-left: 50px;
+  }
+  .hero-container > h3 {
+    margin-bottom: 150px;
+    font-size: 35px;
+    color: #6CC51D;
+    padding-left: 50px;
+  }
 }
+
+@media screen and (max-width: 768px) {
+  .hero-container > h1 {
+    font-size: 50px;
+    margin-top: -100px;
+    padding-right: 50px;
+    padding-left: 50px;
+  }
+  .hero-container > p {
+    padding-left: 50px;
+    padding-right: 50px;
+    font-size: 30px;
+  }
+  .hero-container > h3 {
+    margin-bottom: 90px;
+    font-size: 30px;
+    color: #6CC51D;
+    padding-left: 0px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .hero-container > h1 {
+    font-size: 40px;
+    margin-top: -80px;
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .hero-container > p {
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 24px;
+  }
+  .hero-container > h3 {
+    margin-bottom: 60px;
+    font-size: 26px;
+    color: #6CC51D;
+    padding-left: 20px;
+  }
+}
+
+
+
 
 
