@@ -6,7 +6,7 @@ import HeroSection from '../components/HeroSection/HeroSection';
 import PartnerSlider from '../components/PartnerSlider/PartnerSlider';
 import RegisterWithUs from '../components/RegisterWithUs/RegisterWithUs';
 import Testimonial from '../components/Testimonial/Testimonial';
-import WeDo from '../components/WeDo/WeDo';
+import GetApp from '../components/GetApp/GetApp'
 
 
 function About() {
@@ -17,7 +17,7 @@ function About() {
     <About2/>
     <Testimonial/>
     <PartnerSlider/>
-    <WeDo/>
+    <GetApp/>
     <RegisterWithUs/>
     <Footer/>    
     </>

@@ -80,8 +80,8 @@ function HeroSection(props) {
         <div  style={{ background: `url(${AboutImage})  center center/cover no-repeat `}} className='hero-container'>
 
                    <h3>Home / About</h3>
-                  <h1>Service Providers</h1>
-                  <p>Our Successful Marchant </p>
+                  <h1>Contact Us</h1>
+                  <p>Any question or remarks? Just write us a message! </p>
 
         </div>
         
