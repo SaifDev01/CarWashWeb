@@ -2,16 +2,18 @@ const ErrorHandler = require("../utils/errorHandler")
 const cathAsyncError = require("../middleWare/asyncErrors")
 const Cart  = require("../models/cartModel")
 const User  = require("../models/userModel")
+const SubProduct = require('../models/subProduct')
 require('dotenv')
 
 
 exports.addToCart = cathAsyncError(async (req,res,next)=>{
     console.log("saf");
     const {u_id , p_id} = req.body
-    const user = User.findById(u_id)
+    const user = await User.findById(u_id)
     if(!user){
         return next(new ErrorHandler("User Doesn't Exist", 404))
     }
+    const sub_product = SubProduct.find({p_id})
     const cart = await Cart.findOneAndUpdate(
         { u_id }, 
         { $push: {p_id} },
@@ -24,7 +26,8 @@ exports.addToCart = cathAsyncError(async (req,res,next)=>{
     res.status(201).json({
         success: true,
         message : "Added Successfully",
-        cart
+        cart,
+        sub_product
     })
 })
 

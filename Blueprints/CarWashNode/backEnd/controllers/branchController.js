@@ -92,12 +92,11 @@ exports.updateBranch = cathAsyncError(async(req,res,next)=>{
 exports.test = cathAsyncError(async(req,res,next)=>{    
     const {p_id} = req.body
     
-    
-    const products = await SubProduct.find({p_id}).select('_id')
+    const sub_product = await SubProduct.find({p_id})
 
     res.status(200).json({
         success : true,
-        products
+        sub_product
     })
 
 })
