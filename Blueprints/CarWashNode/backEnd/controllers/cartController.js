@@ -7,15 +7,16 @@ require('dotenv')
 
 
 exports.addToCart = cathAsyncError(async (req,res,next)=>{
-    console.log("saf");
-    const {u_id , p_id} = req.body
-    const user = await User.findById(u_id)
+   
+    const { p_id} = req.body
+    const user = await User.findById(req.user.id)
     if(!user){
         return next(new ErrorHandler("User Doesn't Exist", 404))
     }
-    const sub_product = SubProduct.find({p_id})
+    console.log(user.id);
+    const sub_product = await SubProduct.find({p_id})
     const cart = await Cart.findOneAndUpdate(
-        { u_id }, 
+        { u_id: user.id }, 
         { $push: {p_id} },
         { upsert: true, new: true }, 
     )
