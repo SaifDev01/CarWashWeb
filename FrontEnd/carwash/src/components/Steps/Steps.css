@@ -66,4 +66,10 @@
         
         flex-direction: column;
       }
+
+    .s{
+        height: auto;
+        width: auto;
+    }
+
   }

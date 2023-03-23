@@ -61,11 +61,7 @@
 
 
 
-  .play{
-    margin-top: 50px;
-    width: 250px;
-    height: 64.01px;
-  }
+
    
   .me{
      height: 40px;
@@ -166,11 +162,7 @@
       padding-right:0px ;
       
     }
-    .play{
-      margin-top: 10px;
-      width: 250px;
-      height: 64.01px;
-    }
+    
     .cards   {
       padding: 1.1rem;
       width: 100%;

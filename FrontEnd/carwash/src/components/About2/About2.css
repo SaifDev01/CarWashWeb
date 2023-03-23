@@ -61,4 +61,7 @@
         .text-about{
             padding: 20px;
         }
+        .text-about p{
+    width: auto;
+}
   }

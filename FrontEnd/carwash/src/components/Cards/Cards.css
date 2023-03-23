@@ -28,29 +28,6 @@
   padding: 0 20px; /* add horizontal padding */
 }
 
-@media screen and (min-width: 768px) {
-  /* apply styles for screens larger than 768px */
-  .cards {
-    padding: 5rem;
-    padding-bottom: 0px;
-    width: 50%;
-    background: #fff;
-    float: left;
-  }
-
-  .cards2 {
-    padding-top: 50px;
-    padding-bottom: 30px;
-    width: 50%;
-    padding-right: 150px;
-    float: right;
-  }
-
-  .cards__container {
-    width: 90%;
-    padding: 0;
-  }
-}
 
 h1 {
   font-size: 50px;
@@ -127,4 +104,46 @@ p {
   border-radius: 10px;
   overflow: hidden;
   text-decoration: none;  
+}
+
+
+
+@media screen and (max-width: 767px) {
+  .play{
+    
+    width: 120px;
+    height: 47px;
+  }
+  .img-store {
+    
+    display: flex;
+    justify-content: center;
+  }
+}
+@media screen and (min-width: 768px) {
+  /* apply styles for screens larger than 768px */
+  .cards {
+    padding: 5rem;
+    padding-bottom: 0px;
+    width: 50%;
+    background: #fff;
+    float: left;
+  }
+
+  .cards2 {
+    padding-top: 50px;
+    padding-bottom: 30px;
+    width: 50%;
+    padding-right: 150px;
+    float: right;
+  }
+
+  .cards__container {
+    width: 90%;
+    padding: 0;
+  }
+  .play{
+    width: 190px;
+    height: 67px;
+  }
 }
