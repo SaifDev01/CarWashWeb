@@ -13,6 +13,10 @@ exports.createBranch = cathAsyncError(async(req,res,next)=>{
    , b_state } = req.body
     
    const products = await Product.find({m_id}).select('_id')
+   
+    const sub_products = await SubProduct.find({ p_id: { $in: products } }).select('_id')
+
+    
     // const sub_products = await SubProduct({p_id}).select('_id')
 
 
@@ -29,6 +33,7 @@ exports.createBranch = cathAsyncError(async(req,res,next)=>{
         b_end_time,
         b_state,
         products,
+        sub_products,
         
     })
 
@@ -89,18 +94,6 @@ exports.updateBranch = cathAsyncError(async(req,res,next)=>{
 })
 
 
-exports.test = cathAsyncError(async(req,res,next)=>{    
-    const {p_id} = req.body
-    
-    const sub_product = await SubProduct.find({p_id})
-
-    res.status(200).json({
-        success : true,
-        sub_product
-    })
-
-})
-
 exports.changeProductStatus = cathAsyncError(async(req,res,next)=>{
     const {p_id, b_id , active} = req.body
     const product = await Branch.findOneAndUpdate(
@@ -114,6 +107,23 @@ exports.changeProductStatus = cathAsyncError(async(req,res,next)=>{
     res.status(200).json({
         success : true,
         product
+    })
+
+})
+
+
+
+
+exports.test = cathAsyncError(async(req,res,next)=>{    
+    const {p_id, m_id} = req.body
+    
+   const products = await Product.find({m_id}).select('_id')
+    const sub_product = await SubProduct.find({ p_id: { $in: products } }).select('_id')
+
+    res.status(200).json({
+        success : true,
+        sub_product,    
+        products
     })
 
 })

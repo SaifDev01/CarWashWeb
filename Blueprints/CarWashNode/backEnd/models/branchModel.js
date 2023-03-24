@@ -66,17 +66,17 @@ branchSchema = new mongoose.Schema({
           default: true
         }
       }],
-      // sub_products: [{
-      //   sub_product: {
-      //       type: mongoose.Schema.Types.ObjectId,
-      //       ref: 'SubProduct',
-      //       required: true
-      //   }  , 
-      //   active: {
-      //       type: Boolean,
-      //       default: true
-      //   }
-      // }]
+      sub_products: [{
+        _id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'SubProduct',
+            required: true
+        }  , 
+        active: {
+            type: Boolean,
+            default: true
+        }
+      }]
     
 
 

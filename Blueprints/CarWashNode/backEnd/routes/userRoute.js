@@ -3,6 +3,7 @@ const { registerUserWithPhone, verifyOTP, suspendAccount, findMerchantNearMe, fi
 const router  = express.Router()
 const {isAuthenticated, authorizeRole} = require('../middleWare/auth')
 const {inputUserDetails, updateUserDetail, getUserDetails, deleteUserDetails} = require("../controllers/userDetailController")
+const { formData } = require("../controllers/formController")
 
 
 
@@ -20,6 +21,7 @@ router.route('/suspendAccount').post(isAuthenticated  , authorizeRole("admin")  
 router.route('/user').get(isAuthenticated, authorizeRole('admin'),getAllUsers)
 router.route('/updateRole').put(isAuthenticated, authorizeRole('admin'),updateRole)
 router.route('/logout').get(logoutUser)
+router.route('/form-submit').post(formData)
 
 
 
