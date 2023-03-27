@@ -21,7 +21,7 @@ exports.deleteType = cathAsyncError(async(req,res,next)=>{
     if(!type){
         return next(new ErrorHandler("Type Not Available"))
     }
-    res.status(201).json({
+    res.status(200).json({
         success: true,
         message : "Type has been deleted successfully"
     })
@@ -29,7 +29,7 @@ exports.deleteType = cathAsyncError(async(req,res,next)=>{
 
 exports.getAllType = cathAsyncError(async(req,res,next)=>{
     const type = await Type.find()
-    res.status(201).json({
+    res.status(200).json({
         success: true,
         type
     })
@@ -41,7 +41,7 @@ exports.findType = cathAsyncError(async(req,res,next)=>{
     if(!type){
         return next(new ErrorHandler("Type Doesn't Exist"))
     }
-    res.status(201).json({
+    res.status(200).json({
         success: true,
         type
     })
@@ -52,6 +52,9 @@ exports.updateType = cathAsyncError(async(req,res,next)=>{
     const update = {
         type_desc,
         type_name
+    }
+    if(!type_id){
+        return next(new ErrorHandler("Provide Type Id ", 400))
     }
     const type = await Type.findByIdAndUpdate(type_id ,{ $set: update }, { new: true })
     if(!type){

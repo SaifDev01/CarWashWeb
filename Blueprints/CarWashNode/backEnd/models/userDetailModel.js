@@ -14,12 +14,12 @@ const userDetailSchema = new mongoose.Schema({
     },  
     user_address : {
         type : String,
-        default : "user"
+        required: [true , "Enter User Address"]
 
     },
     user_city : {
         type : String,
-        default : "user"
+        required : [true, 'Enter City']
 
     },
     userId : {

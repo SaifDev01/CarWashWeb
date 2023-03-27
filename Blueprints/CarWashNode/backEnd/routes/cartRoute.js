@@ -6,7 +6,7 @@ const router = express.Router()
 router.route("/cart/add").post(isAuthenticated,addToCart)
 // router.route("/type/:id").delete(deleteType).get(findType)
 // router.route('/type').get(getAllType).put(updateType)
-router.route("/cart/:id").get(isAuthenticated,checkCart).post(isAuthenticated,emptyCart)
+router.route("/cart").get(isAuthenticated,checkCart).post(isAuthenticated,emptyCart)
 router.route("/cart/remove").put(isAuthenticated,removeCartItem)
 
 

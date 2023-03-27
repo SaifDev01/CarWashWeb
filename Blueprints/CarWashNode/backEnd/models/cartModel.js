@@ -6,6 +6,10 @@ cartSchema = new mongoose.Schema({
         type : mongoose.Schema.ObjectId,
         ref : "Product"
     }],
+    sub_p_id : [{
+        type : mongoose.Schema.ObjectId,
+        ref : "SubProduct"
+    }],
         
 }, { timestamps: true }
 )

@@ -8,7 +8,7 @@ const { formData } = require("../controllers/formController")
 
 
 router.route("/register").post(registerUserWithPhone)
-router.route('/verifyotp').post(isAuthenticated ,verifyOTP)
+router.route('/verifyotp').post(verifyOTP)
 router.route('/findMerchant').post( isAuthenticated, findMerchantNearMe)
 
 

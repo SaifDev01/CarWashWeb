@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-
+const Branch = require('./branchModel')
 const productSchema = new mongoose.Schema({
     m_id : {
         type : mongoose.Schema.ObjectId,
@@ -29,5 +29,24 @@ const productSchema = new mongoose.Schema({
 
   }, { timestamps: true }) 
 
+
+
+  productSchema.pre('save', async function(next) {
+    try {
+      const product = this;
+      const branches = await Branch.find({m_id: this.m_id});
+  
+      // add the new product to each branch's products array
+      const updatePromises = branches.map(branch => {
+        branch.products.push(product._id);
+        return branch.save();
+      });
+  
+      await Promise.all(updatePromises);
+      next();
+    } catch (error) {
+      next(error);
+    }
+  });
 
 module.exports = mongoose.model("Product", productSchema)

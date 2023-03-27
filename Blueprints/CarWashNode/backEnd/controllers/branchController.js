@@ -36,7 +36,6 @@ exports.createBranch = cathAsyncError(async(req,res,next)=>{
         sub_products,
         
     })
-
     res.status(201).json({
         success: true,
         branch
@@ -47,9 +46,9 @@ exports.deleteBranch = cathAsyncError(async(req,res,next)=>{
     if(!branch){
         return next(new ErrorHandler("Branch Doesn't Exist" , 404))
     }
-    res.status(201).json({
+    res.status(200).json({
         success: "true",
-        message: `Branch Deleted Successfully`, 
+        message: `Branch with ID ${req.params.id} deleted successfully`,    
     })
 })
 
@@ -58,7 +57,7 @@ exports.getBranch = cathAsyncError(async(req,res,next)=>{
     if(!branch){
         return next(new ErrorHandler("Branch Doesn't Exist" , 404))
     }
-    res.status(201).json({
+    res.status(200).json({
         success: "true",
         branch, 
     })
@@ -96,6 +95,9 @@ exports.updateBranch = cathAsyncError(async(req,res,next)=>{
 
 exports.changeProductStatus = cathAsyncError(async(req,res,next)=>{
     const {p_id, b_id , active} = req.body
+     if(!p_id || !b_id || active === undefined){
+        return next(new ErrorHandler("Invalid request data"))
+    }
     const product = await Branch.findOneAndUpdate(
         { _id: b_id, 'products._id': p_id },
         { $set: { 'products.$.active': active } },

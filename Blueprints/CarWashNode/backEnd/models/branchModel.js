@@ -57,7 +57,7 @@ branchSchema = new mongoose.Schema({
     b_end_time : { type: String , required : [true, "Enter Closing Time"]},
     products: [{
         _id: {
-          type: mongoose.Schema.Types.ObjectId,
+          type: mongoose.Schema.ObjectId,
           ref: 'Product',
           required: true
         },
@@ -68,7 +68,7 @@ branchSchema = new mongoose.Schema({
       }],
       sub_products: [{
         _id: {
-            type: mongoose.Schema.Types.ObjectId,
+            type: mongoose.Schema.ObjectId,
             ref: 'SubProduct',
             required: true
         }  , 
@@ -86,14 +86,24 @@ branchSchema = new mongoose.Schema({
 
 } , { timestamps: true } )
 
+
+branchSchema.index({ location: '2dsphere' });
+
+
 branchSchema.pre("save", async function(next){
     if(!this.isModified("b_password")){
         next()
     }
-    this.password = await bcrypt.hash(this.b_password, 10)
-
+    this.b_password = await bcrypt.hash(this.b_password, 10)
 
 })
+branchSchema.methods.isPasswordMatch = async function(enterdPassword) {
+    return await bcrypt.compare(enterdPassword, this.b_password);
+}
+branchSchema.methods.getJWTToken = function(){
+    return jwt.sign({id :this._id }, process.env.JWT_SECRET )      
+}
+
 
 
 

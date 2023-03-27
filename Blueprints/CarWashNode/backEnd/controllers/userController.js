@@ -1,7 +1,7 @@
 const ErrorHandler = require("../utils/errorHandler")
 const cathAsyncError = require("../middleWare/asyncErrors")
 const User  = require("../models/userModel")
-const Merchant = require('../models/merchantModel')
+const Branch = require('../models/branchModel')
 const {generateOTP} = require('../utils/optGenerator')
 require('dotenv')
 const jwtToken = require('../utils/getJWToken') 
@@ -19,17 +19,19 @@ exports.registerUserWithPhone = cathAsyncError(async(req,res,next)=>{
         })
     }
     const otp = generateOTP(6)
-    user.phoneOTP = otp
-    user.save()
     client.messages.create({
         body: `Verify by entering this 6-digit OTP ${otp} `,
         to: '+'+phoneNumber,
         from:'+15074362485'
+    }).catch(()=>{
+        return next(new ErrorHandler("Otp Can Not be Sent", 400))
     })
+    user.phoneOTP = otp
+    user.save()
     res.status(200).json({
         success : true,
         message: "OTP sent to the Phone Number",
-        user
+
     })
 })
 
@@ -51,7 +53,7 @@ module.exports.logoutUser = cathAsyncError(async(req, res, next) => {
 
 exports.verifyOTP = cathAsyncError(async(req,res,next)=>{
         const { otp, userId } = req.body;
-        const user = await User.findById(userId);
+        const user = await User.findOne({phoneOTP : otp});
         if (!user) {
            return next(new ErrorHandler("User Doesn't Exist", 404));
         }
@@ -101,18 +103,22 @@ exports.suspendAccount = cathAsyncError(async (req,res,next)=>{
 
 
 exports.findMerchantNearMe = cathAsyncError(async (req,res,next)=>{
-    const { long , lat } = req.body
-    const merchants = await Merchant.find({
+    const { long , lat , km } = req.body
+    const merchants = await Branch.find({
         location: {
             $near: {
                 $geometry: {
                     type: "Point",
                     coordinates: [long, lat]
                 },
-                $maxDistance: 10000000000 // in meters
+                $maxDistance: km*1000 // in meters
             }
         }
     })
+    console.log(merchants.length);
+    if(!merchants.length >0){
+        return next(new ErrorHandler("No Merchant Found Near You" , 404))
+    }
     res.status(200).json({
         success : "true", 
         merchants   
@@ -155,10 +161,14 @@ exports.getAllUsers = cathAsyncError(async(req,res,next)=>{
 //Admin
 exports.updateRole = cathAsyncError(async(req,res,next)=>{
     const {userId , role} = req.body
-    const user = await User.findByIdAndUpdate(userId, {role} , {new : true} )
+    let user = await User.findById(userId)
     if(!user){
         return next(new ErrorHandler("User Doesn't Exists"))
        }
+    await User.findByIdAndUpdate(userId, {role} , {new : true} ).catch(()=>{
+        return next(new ErrorHandler("User Can not be updated"))
+    })
+    
     res.status(200).json({
         user
     })
