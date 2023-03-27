@@ -1,7 +1,6 @@
 import React from 'react'
 import './HeroSection.css'
 import '../../App.css'
-import NavBar from '../NavBar/NavBar';
 import HomeImage from '../../assets/home.png';
 import AboutImage from '../../assets/about.png';
 import ServicesImage from '../../assets/services.png';
@@ -12,7 +11,6 @@ function HeroSection(props) {
        return (
    
             <>
-              <NavBar/>
           
               <div  style={{ background: `url(${HomeImage})  center center/cover no-repeat `}} className='hero-container'>
 
@@ -27,7 +25,6 @@ function HeroSection(props) {
     }else   if(props.link === 'about'){
       return (
         <>
-        <NavBar/>
         <div  style={{ background: `url(${AboutImage})  center center/cover no-repeat `}} className='hero-container'>
 
                    <h3>Home / About</h3>
@@ -43,7 +40,6 @@ function HeroSection(props) {
     else   if(props.link === 'services'){
       return (
         <>
-        <NavBar/>
         
         <div  style={{ background: `url(${ServicesImage})  center center/cover no-repeat `}} className='hero-container'>
 
@@ -61,7 +57,6 @@ function HeroSection(props) {
     else   if(props.link === 'partners'){
       return (
         <>
-        <NavBar/>
         <div  style={{ background: `url(${AboutImage})  center center/cover no-repeat `}} className='hero-container'>
 
                    <h3>Home / About</h3>
@@ -76,7 +71,6 @@ function HeroSection(props) {
     else   if(props.link === 'contact'){
       return (
         <>
-        <NavBar/>
         <div  style={{ background: `url(${AboutImage})  center center/cover no-repeat `}} className='hero-container'>
 
                    <h3>Home / About</h3>

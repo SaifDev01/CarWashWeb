@@ -8,7 +8,8 @@ import Services from './pages/Services'
 import Partners from './pages/Partners'
 import Contact from './pages/Contact'
 import About from './pages/About'
-  
+import NavBar from './components/NavBar/NavBar';
+import Footer from './components/Footer/Footer';
 
 
 
@@ -18,6 +19,7 @@ function App() {
   return (
     <Router>
       
+      <NavBar/>
       <Routes>
         <Route path='/' exact Component={Home} />
         <Route path='/about' exact Component={About} />
@@ -26,6 +28,8 @@ function App() {
           <Route path='/contact' exact Component={Contact} />
 
       </Routes>
+      <Footer/>
+
 
       
     </Router>

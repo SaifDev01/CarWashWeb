@@ -8,7 +8,6 @@ import GetApp from '../components/GetApp/GetApp';
 import PartnerSlider from '../components/PartnerSlider/PartnerSlider';
 import WeDo from '../components/WeDo/WeDo';
 import RegisterWithUs from '../components/RegisterWithUs/RegisterWithUs';
-import Footer from '../components/Footer/Footer';
 function Home(){
     return (
         <>
@@ -24,7 +23,6 @@ function Home(){
       <PartnerSlider/>
       <WeDo/>
       <RegisterWithUs/>
-      <Footer/>
         </>
     )
 }

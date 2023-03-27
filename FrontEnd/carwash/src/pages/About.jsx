@@ -1,8 +1,6 @@
 import React from 'react'
 import About2 from '../components/About2/About2';
-import Footer from '../components/Footer/Footer';
 import HeroSection from '../components/HeroSection/HeroSection';
-// import NavBar from '../components/NavBar/NavBar';
 import PartnerSlider from '../components/PartnerSlider/PartnerSlider';
 import RegisterWithUs from '../components/RegisterWithUs/RegisterWithUs';
 import Testimonial from '../components/Testimonial/Testimonial';
@@ -19,7 +17,7 @@ function About() {
     <PartnerSlider/>
     <GetApp/>
     <RegisterWithUs/>
-    <Footer/>    
+    
     </>
   )
 }
